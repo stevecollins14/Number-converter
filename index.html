@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#2563eb">
+
+    <meta name="description"
+          content="Convert numbers between Decimal, Binary, Octal and Hexadecimal.">
+
+    <title>Number Base Converter</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="icon" href="icons/icon-192.png">
+</head>
+
+<body>
+
+<header class="top-bar">
+
+    <div class="brand">
+        <div class="brand-icon">01</div>
+
+        <div>
+            <h1>Number Base Converter</h1>
+            <p>Decimal • Binary • Octal • Hexadecimal</p>
+        </div>
+    </div>
+
+    <button id="themeButton"
+            class="theme-button"
+            title="Change theme">
+        🌙
+    </button>
+
+</header>
+
+
+<main class="container">
+
+    <!-- Converter -->
+
+    <section class="converter-card">
+
+        <div class="section-heading">
+
+            <div>
+                <h2>Number Converter</h2>
+
+                <p>
+                    Enter a number and select its current number system.
+                </p>
+            </div>
+
+        </div>
+
+
+        <form id="converterForm">
+
+            <div class="input-section">
+
+                <label for="numberInput">
+                    Enter Number
+                </label>
+
+                <input
+                    type="text"
+                    id="numberInput"
+                    placeholder="Example: 255"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
+            </div>
+
+
+            <div class="controls">
+
+                <div class="input-section">
+
+                    <label for="inputBase">
+                        Input Number System
+                    </label>
+
+                    <select id="inputBase">
+
+                        <option value="10">
+                            Decimal (Base 10)
+                        </option>
+
+                        <option value="2">
+                            Binary (Base 2)
+                        </option>
+
+                        <option value="8">
+                            Octal (Base 8)
+                        </option>
+
+                        <option value="16">
+                            Hexadecimal (Base 16)
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="button-group">
+
+                    <button
+                        type="submit"
+                        class="convert-button">
+                        Convert
+                    </button>
+
+                    <button
+                        type="button"
+                        id="resetButton"
+                        class="reset-button">
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+        <div id="message"
+             class="message"
+             aria-live="polite">
+        </div>
+
+    </section>
+
+
+    <!-- Results -->
+
+    <section class="results-section">
+
+        <div class="section-title">
+            <h2>Conversion Results</h2>
+        </div>
+
+
+        <div class="results-grid">
+
+
+            <!-- Decimal -->
+
+            <div class="result-card">
+
+                <div class="result-header">
+
+                    <span class="result-name">
+                        Decimal
+                    </span>
+
+                    <span class="base-label">
+                        Base 10
+                    </span>
+
+                </div>
+
+
+                <div class="result-content">
+
+                    <span id="decimalResult">
+                        —
+                    </span>
+
+                    <button
+                        class="copy-button"
+                        data-target="decimalResult">
+                        Copy
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Binary -->
+
+            <div class="result-card">
+
+                <div class="result-header">
+
+                    <span class="result-name">
+                        Binary
+                    </span>
+
+                    <span class="base-label">
+                        Base 2
+                    </span>
+
+                </div>
+
+
+                <div class="result-content">
+
+                    <span id="binaryResult">
+                        —
+                    </span>
+
+                    <button
+                        class="copy-button"
+                        data-target="binaryResult">
+                        Copy
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Octal -->
+
+            <div class="result-card">
+
+                <div class="result-header">
+
+                    <span class="result-name">
+                        Octal
+                    </span>
+
+                    <span class="base-label">
+                        Base 8
+                    </span>
+
+                </div>
+
+
+                <div class="result-content">
+
+                    <span id="octalResult">
+                        —
+                    </span>
+
+                    <button
+                        class="copy-button"
+                        data-target="octalResult">
+                        Copy
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Hexadecimal -->
+
+            <div class="result-card">
+
+                <div class="result-header">
+
+                    <span class="result-name">
+                        Hexadecimal
+                    </span>
+
+                    <span class="base-label">
+                        Base 16
+                    </span>
+
+                </div>
+
+
+                <div class="result-content">
+
+                    <span id="hexResult">
+                        —
+                    </span>
+
+                    <button
+                        class="copy-button"
+                        data-target="hexResult">
+                        Copy
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Explanation -->
+
+    <section class="explanation-card">
+
+        <div class="section-title">
+
+            <h2>How the Conversion Works</h2>
+
+            <p>
+                The application can also show the mathematical
+                conversion process.
+            </p>
+
+        </div>
+
+
+        <div id="stepsContainer">
+
+            <p class="empty-message">
+                Enter a number and click Convert to see the
+                conversion steps.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- History -->
+
+    <section class="history-card">
+
+        <div class="history-header">
+
+            <div>
+
+                <h2>Conversion History</h2>
+
+                <p>
+                    Your recent conversions are shown here.
+                </p>
+
+            </div>
+
+
+            <button
+                id="clearHistoryButton"
+                class="clear-history-button">
+                Clear History
+            </button>
+
+        </div>
+
+
+        <div id="historyContainer">
+
+            <p class="empty-message">
+                No conversions yet.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Install -->
+
+    <section class="install-card">
+
+        <div>
+
+            <h2>Install Number Base Converter</h2>
+
+            <p>
+                Install this application on your phone or computer
+                for quick access.
+            </p>
+
+        </div>
+
+
+        <button
+            id="installButton"
+            class="install-button">
+            Install App
+        </button>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        Number Base Converter
+    </p>
+
+    <p>
+        Decimal • Binary • Octal • Hexadecimal
+    </p>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
